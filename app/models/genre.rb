@@ -1,6 +1,23 @@
 class Genre
-  # code here
+  extend Memorable::ClassMethods
+  extend Findable::ClassMethods
+  extend Createable::ClassMethods
 
-  def self.reset_all
+  attr_accessor :name, :songs
+  @@instances = []
+
+  def initialize(name = nil)
+    @name = name
+    @@instances << self
+    @songs = []
+    @artists = []
+  end
+
+  def artists
+    @artists = @artists.uniq
+  end
+
+  def self.all
+    @@instances
   end
 end
